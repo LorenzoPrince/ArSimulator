@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5538848400746421976}
   m_Layer: 0
   m_Name: balloon_5
-  m_TagString: Sphere1
+  m_TagString: Balloon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d68c0287f8aa54595f484d441597eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BalloonScript
+  speed: 0.2
 --- !u!135 &-5538848400746421976
 SphereCollider:
   m_ObjectHideFlags: 0
