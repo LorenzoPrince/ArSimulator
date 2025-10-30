@@ -7,26 +7,43 @@ public class GameManager : MonoBehaviour
     private float timeRemaining;
     private bool gameRunning = true;
 
-    void Start()
+    private void OnEnable()
+    {
+        if (EventManager.Instance != null)
+            EventManager.Instance.OnBalloonHit += OnBalloonHit;
+    }
+
+    private void OnDisable()
+    {
+        if (EventManager.Instance != null)
+            EventManager.Instance.OnBalloonHit -= OnBalloonHit;
+    }
+
+    private void Start()
     {
         timeRemaining = gameDuration;
     }
 
-    void Update()
+    private void Update()
     {
-        if (!gameRunning) return;
+        if (!gameRunning)
+            return;
 
         timeRemaining -= Time.deltaTime;
-        if (timeRemaining <= 0) EndGame();
+        if (timeRemaining <= 0f)
+            EndGame();
     }
 
-    public void AddScore(int amount)
+    private void OnBalloonHit(int points)
     {
-        score += amount;
-        EventManager.Instance.ScoreChanged(score); // avisar a todos
+        if (!gameRunning)
+            return;
+
+        score += points;
+        EventManager.Instance.ScoreChanged(score);
     }
 
-    void EndGame()
+    private void EndGame()
     {
         gameRunning = false;
         EventManager.Instance.GameOver();

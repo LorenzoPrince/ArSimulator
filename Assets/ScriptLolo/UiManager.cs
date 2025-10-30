@@ -12,12 +12,16 @@ public class UiManager : MonoBehaviour
 
     void OnEnable()
     {
-        EventManager.Instance.OnScoreChanged += UpdateScore;
+        if (EventManager.Instance != null)
+            EventManager.Instance.OnScoreChanged += UpdateScore;
+        else
+            Debug.LogWarning("EventManager.Instance es null en OnEnable (UiManager)");
     }
 
     void OnDisable()
     {
-        EventManager.Instance.OnScoreChanged -= UpdateScore;
+        if (EventManager.Instance != null)
+            EventManager.Instance.OnScoreChanged -= UpdateScore;
     }
 
     void UpdateScore(int newScore)

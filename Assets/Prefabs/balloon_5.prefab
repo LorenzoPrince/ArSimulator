@@ -104,7 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d68c0287f8aa54595f484d441597eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BalloonScript
-  speed: 0.2
+  points: 10
+  popEffect: {fileID: 7173192418716677700, guid: fa929227b7e40c94bb0936bbbb34e96f, type: 3}
+  lifetime: 10
+  floatSpeed: 0.2
 --- !u!135 &-5538848400746421976
 SphereCollider:
   m_ObjectHideFlags: 0

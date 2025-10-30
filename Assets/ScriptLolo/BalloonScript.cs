@@ -2,14 +2,19 @@ using UnityEngine;
 
 public class BalloonScript : MonoBehaviour
 {
-    public int points = 10;
+    public int points = 1;
     public GameObject popEffect;
-    public float lifetime = 10f;  // tiempo hasta autodestrucción
+    public float lifetime = 20f;
+    public float floatSpeed = 0.2f;
 
     private void Start()
     {
-        // Destruir automáticamente después de 'lifetime' segundos
         Destroy(gameObject, lifetime);
+    }
+
+    private void Update()
+    {
+        transform.Translate(Vector3.up * floatSpeed * Time.deltaTime);
     }
 
     public void Hit()
@@ -17,9 +22,9 @@ public class BalloonScript : MonoBehaviour
         if (popEffect != null)
             Instantiate(popEffect, transform.position, Quaternion.identity);
 
-        EventManager.Instance.BalloonHit();            // notificar que se golpeó
-        EventManager.Instance.ScoreChanged(points);    // sumar puntaje
 
-        Destroy(gameObject); // destruir inmediatamente al golpear
+        EventManager.Instance.BalloonHit(points);
+
+        Destroy(gameObject);
     }
 }

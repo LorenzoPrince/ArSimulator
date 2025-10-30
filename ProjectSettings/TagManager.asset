@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Sphere1
+  - Balloon
   - Sphere2
   - Sphere3
+  - Sphere1
   layers:
   - Default
   - TransparentFX
