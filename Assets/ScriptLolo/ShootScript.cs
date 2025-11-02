@@ -3,7 +3,7 @@ using UnityEngine;
 public class ShootScript : MonoBehaviour
 {
     public GameObject arCamera;
-    public GameObject smoke;
+
 
     public void Shoot()
     {
@@ -22,9 +22,7 @@ public class ShootScript : MonoBehaviour
                 if (balloon != null)
                     balloon.Hit();
 
-                // Instanciar efecto de humo
-                if (smoke != null)
-                    Instantiate(smoke, hit.point, Quaternion.LookRotation(hit.normal));
+               
             }
         }
     }
