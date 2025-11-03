@@ -15,11 +15,19 @@ public class SpawnScript : MonoBehaviour
 
     private float currentInterval;
 
-
+    public AudioClip balloonSpawnSound;  // Sonido a reproducir
+    private AudioSource audioSource;     // Fuente de audio para reproducir el sonido
 
     void Start()
     {
         currentInterval = initialInterval;
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>(); // Si no tiene un AudioSource, lo añade dinámicamente
+        }
+
         StartCoroutine(StartSpawning());
     }
 
@@ -44,14 +52,28 @@ public class SpawnScript : MonoBehaviour
 
     void SpawnBalloon()
     {
-        Vector3 randomDirection = UnityEngine.Random.onUnitSphere;
+        Vector3 randomDirection = Random.onUnitSphere;
         randomDirection.y = 0f;
 
-        Vector3 spawnPos = arCamera.transform.position + randomDirection * UnityEngine.Random.Range(1.5f, spawnRadius);
-        spawnPos.y = arCamera.transform.position.y - UnityEngine.Random.Range(0.8f, 1.5f);
+        Vector3 spawnPos = arCamera.transform.position + randomDirection * Random.Range(1.5f, spawnRadius);
+        spawnPos.y = arCamera.transform.position.y - Random.Range(0.8f, 1.5f);
 
-        Quaternion rot = Quaternion.Euler(0, UnityEngine.Random.Range(0f, 360f), 0);
-        GameObject balloonPrefab = balloons[UnityEngine.Random.Range(0, balloons.Length)];
+        Quaternion rot = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
+
+        // Elegir el prefab de globo aleatorio
+        GameObject balloonPrefab = balloons[Random.Range(0, balloons.Length)];
+
+        // Instanciar el globo en la posición y rotación
         Instantiate(balloonPrefab, spawnPos, rot);
+
+        // Reproducir el sonido cuando se spawnea el globo
+        PlayBalloonSpawnSound();
+    }
+    void PlayBalloonSpawnSound()
+    {
+        if (audioSource != null && balloonSpawnSound != null)
+        {
+            audioSource.PlayOneShot(balloonSpawnSound); 
+        }
     }
 }

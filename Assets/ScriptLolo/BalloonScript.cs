@@ -20,11 +20,13 @@ public class BalloonScript : MonoBehaviour
     public void Hit()
     {
         if (popEffect != null)
-            Instantiate(popEffect, transform.position, Quaternion.identity);
+        {
+            Instantiate(popEffect, transform.position, Quaternion.identity);  // Crear el efecto de "pop"
+        }
 
+        EventManager.Instance.BalloonHit(points);  // Notificar al EventManager que el globo ha sido destruido
 
-        EventManager.Instance.BalloonHit(points);
-
-        Destroy(gameObject);
+        Destroy(gameObject);  // Eliminar el globo del juego
     }
+
 }
