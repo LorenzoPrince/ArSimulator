@@ -15,6 +15,8 @@ public class SpawnScript : MonoBehaviour
 
     private float currentInterval;
 
+
+
     void Start()
     {
         currentInterval = initialInterval;

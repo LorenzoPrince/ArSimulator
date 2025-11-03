@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
@@ -28,5 +29,10 @@ public class UiManager : MonoBehaviour
     {
         if (scoreText != null)
             scoreText.text = "Puntaje: " + newScore;
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
